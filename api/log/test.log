@@ -1,0 +1,155 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (29.6ms)[0m  CREATE EXTENSION IF NOT EXISTS "plpgsql"
+  [1m[36m (26.8ms)[0m  [1mDROP TABLE "active_admin_comments"[0m
+  [1m[35m (15.4ms)[0m  CREATE TABLE "active_admin_comments" ("id" serial primary key, "namespace" character varying(255), "body" text, "resource_id" character varying(255) NOT NULL, "resource_type" character varying(255) NOT NULL, "author_id" integer, "author_type" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (1.7ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" USING btree ("author_type", "author_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE  INDEX  "index_active_admin_comments_on_namespace" ON "active_admin_comments" USING btree ("namespace")
+  [1m[36m (1.2ms)[0m  [1mCREATE  INDEX  "index_active_admin_comments_on_resource_type_and_resource_id" ON "active_admin_comments" USING btree ("resource_type", "resource_id")[0m
+  [1m[35m (3.5ms)[0m  DROP TABLE "admin_users"
+  [1m[36m (27.9ms)[0m  [1mCREATE TABLE "admin_users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX  "index_admin_users_on_email" ON "admin_users" USING btree ("email")
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_admin_users_on_reset_password_token" ON "admin_users" USING btree ("reset_password_token")[0m
+  [1m[35m (3.4ms)[0m  CREATE TABLE "contacts" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "email" character varying(255), "title" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140730123239')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.5ms)[0m  BEGIN
+  [1m[36mContact Exists (22.9ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'MyString' LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Load (0.4ms)[0m  SELECT  "contacts".* FROM "contacts"   ORDER BY "contacts"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (13.4ms)[0m  INSERT INTO "contacts" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-07-30 14:49:26.140698"], ["email", "a"], ["updated_at", "2014-07-30 14:49:26.140698"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mContact Exists (6.5ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mContact Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'MyString' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Load (0.5ms)[0m  SELECT  "contacts".* FROM "contacts"   ORDER BY "contacts"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "contacts" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-07-30 14:50:03.667169"], ["email", "a"], ["updated_at", "2014-07-30 14:50:03.667169"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mContact Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'shyanne@goldner.name' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Load (0.5ms)[0m  SELECT  "contacts".* FROM "contacts"   ORDER BY "contacts"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "contacts" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-07-30 14:53:07.993779"], ["email", "a"], ["updated_at", "2014-07-30 14:53:07.993779"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mContact Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'felipa@schoenlehner.org' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Load (0.6ms)[0m  SELECT  "contacts".* FROM "contacts"   ORDER BY "contacts"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "contacts" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-07-30 14:53:19.896857"], ["email", "a"], ["updated_at", "2014-07-30 14:53:19.896857"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.3ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mContact Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'floie@wunsch.info' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Load (0.5ms)[0m  SELECT  "contacts".* FROM "contacts"   ORDER BY "contacts"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "contacts" ("created_at", "email", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-07-30 14:53:49.540489"], ["email", "a"], ["updated_at", "2014-07-30 14:53:49.540489"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1
+  [1m[36mContact Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" = 'a' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.4ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.2ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mContact Exists (0.5ms)[0m  SELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1
+  [1m[36mContact Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "contacts"  WHERE "contacts"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
