@@ -1,6 +1,6 @@
 # Rails + Ember.js (with the Ember CLI): Redux
 
-This is my implementation of the fantastic blog tutorial by @tonycoco (many thanks :)
+This is my implementation of the fantastic blog tutorial by [@tonycoco](https://github.com/tonycoco)
 
 - [Part 1: The API and CMS](https://www.devmynd.com/blog/2014-7-rails-ember-js-with-the-ember-cli-redux-part-1-the-api-and-cms-with-ruby-on-rails)
 - [Part 2: The Front-End](https://devmynd.com/blog/2014-7-rails-ember-js-with-the-ember-cli-redux-part-2-the-front-end-with-ember-and-the-ember-cli)
