@@ -9,5 +9,5 @@
 
 # Ignore all logfiles and tempfiles.
 /api/log/*.log
-/api/tmp
+/api/tmp/*
 
