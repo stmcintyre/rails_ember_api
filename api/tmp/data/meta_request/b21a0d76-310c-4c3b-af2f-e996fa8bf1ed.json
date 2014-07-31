@@ -1,1 +1,0 @@
-[{"name":"sql.active_record","payload":{"sql":"SELECT \"contacts\".* FROM \"contacts\"","name":"Contact Load","connection_id":70324429247980,"statement_name":null,"binds":[]},"time":"2014-07-30T15:43:52.603+01:00","transaction_id":"37fbf3952d050bebbe6f","end":"2014-07-30T15:43:52.604+01:00","children":[],"duration":1.367}]
